@@ -100,7 +100,7 @@ const prevDay = (pair) => {
   })
 }
 
-const priceSince = (pair, from, to) => {
+const candlesFromTo = (pair, from, to) => {
   return new Promise((resolve, reject) => {
     let dateFrom = moment().subtract(from, 'days').unix()
     let dateTo = moment().subtract(to, 'days').unix()
@@ -341,6 +341,7 @@ module.exports = {
   accountBal,
   accountSummary,
   allTrades,
+  candlesFromTo,
   closeAll,
   longClose,
   getCandles,
@@ -349,6 +350,5 @@ module.exports = {
   openShort,
   openPositions,
   prevDay,
-  priceSince,
   shortClose
 }
