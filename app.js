@@ -34,27 +34,33 @@ const fillTrainingInputs = async () => {
       math.mean(prev10Prices),
       math.mean(highLowDiffs),
       math.mean(volumes),
-      sliced[9].bid.c
+      math.number(sliced[9].bid.c)
     ]
 
     trainingInputs.push(inputs)
 
   }
 
-  console.log(trainingInputs[0])
+  console.log(trainingInputs)
   fillTrainingAnswers()
 
 }
 
 const fillTrainingAnswers = () => {
+
+  let prices = []
+
   for (let i = 0; i < trainingInputs.length; i++) {
-    if (trainingInputs[i + 1] > trainingInputs[i]) {
-      trainingAnswers.push(1)
-    } else {
-      trainingAnswers.push(0)
-    }
+    prices.push(trainingInputs[i][3])
   }
-  console.log(trainingAnswers)
+  let answers = prices.map((x, y) => {
+    if (x > prices[y + 1]) {
+      console.log('true')
+    } else {
+      console.log('false')
+    }
+  })
+  console.log(answers)
 }
 
 fillTrainingInputs()
